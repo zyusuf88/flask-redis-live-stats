@@ -12,31 +12,34 @@
 
 This project demonstrates a simple multi-container application using Flask and Redis. The Flask application increments and retrieves a visitor count from Redis, and everything is managed using Docker Compose.
 
-- [Flask-Redis Visitor Counter](#flask-redis-visitor-counter)
-    - [What is Flask?](#what-is-flask)
-    - [What is Redis?](#what-is-redis)
-    - [Project Overview](#project-overview)
-  - [Introduction](#introduction)
-    - [What is Redis?](#what-is-redis-1)
-    - [Why Use Redis?](#why-use-redis)
-    - [Multi-Container Application](#multi-container-application)
-    - [Benefits of Using Multi-Container Setups](#benefits-of-using-multi-container-setups)
-    - [Prerequisites](#prerequisites)
-  - [Usage](#usage)
-  - [Endpoints](#endpoints)
-  - [Notes](#notes)
-  - [Detailed Explanations](#detailed-explanations)
-    - [`app.py`](#apppy)
 
 
- 
+
+- [What is Flask?](#what-is-flask)
+- [What is Redis?](#what-is-redis)
+  - [Project Overview](#project-overview)
+  - [Multi-Container Application](#multi-container-application)
+  - [Benefits of Using Multi-Container Setups](#benefits-of-using-multi-container-setups)
+  - [Prerequisites](#prerequisites)
+- [Usage](#usage)
+- [Endpoints](#endpoints)
+- [Notes](#notes)
+- [Files](#files)
+- [Application Structure](#application-structure)
+  - [`app.py`](#apppy)
+  - [docker-compose.yml](#docker-composeyml)
+  - [Dockerfile](#dockerfile)
+- [Commands](#commands)
+- [Conclusion](#conclusion)
+
+
 Welcome to the Flask-Redis Visitor Counter project! This project showcases a simple multi-container application using Flask and Redis, all managed by Docker Compose.
 
-### What is Flask?
+## What is Flask?
 
 [Flask](https://flask.palletsprojects.com/) is a lightweight web framework for Python. It’s designed with simplicity and flexibility in mind, making it an excellent choice for small to medium-sized web applications. Flask provides the essentials to get a web server up and running without the overhead of more extensive frameworks, allowing developers to add extensions and components as needed.
 
-### What is Redis?
+## What is Redis?
 
 [Redis](https://redis.io/) is an open-source, in-memory data structure store, which can be used as a database, cache, and message broker. It’s known for its **high performance and support** for various data structures like strings, hashes, lists, sets, and more. Redis stores data in memory, which makes data retrieval extremely fast, making it perfect for applications that require quick access to data.
 
@@ -160,7 +163,7 @@ if __name__ == '__main__':
 - ` app.run(host='0.0.0.0', port=5000)`: Starts the Flask application and makes it accessible on all network interfaces (0.0.0.0) on port 5000.
 
 
-## docker-compose.yml
+### docker-compose.yml
 
 - The docker-compose file sets up the services for the application. It links multiple containers together so they can communicate with each other:
 
@@ -179,10 +182,33 @@ services:
       - "6379"
 ```
 
-## Dockerfile
+### Dockerfile
 - The Dockerfile contains instructions to build the Docker image for the Flask application
+```
+# this is your base image
+FROM python:3.10
+
+# we set the working dir in yourr container
+# WORKDIR /usr/src/App
+WORKDIR /app
+
+
+# copying reqs file to your container so you can install the app reqs 
+COPY requirements.txt ./
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+# copy your app code 
+COPY . .
+
+# expose/open up the port on your container so you can access your app 
+EXPOSE 5000
+
+# running app in container
+CMD ["python", "app.py"]
+``` 
   
-- **FROM python:3.9-slim:** This line specifies the base image for our Docker image. We're using the official Python 3.9 slim image from Docker Hub.
+- **FROM `python:3.9-slim:** This line specifies the base image for our Docker image. We're using the official Python 3.10 slim image from Docker Hub.
 
 - **WORKDIR /app:** This sets the working directory inside the container to `/app`. All subsequent commands will be run from this directory. This helps keep our container organized and makes it easier to understand where files are located.
 

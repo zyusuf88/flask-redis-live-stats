@@ -87,6 +87,8 @@ A multi-container application uses multiple Docker containers to separate differ
     ```
 
 2. Open your browser and go to `http://localhost:5000` to see the welcome message.
+   
+ ![Screenshot 2024-07-18 145557](https://github.com/user-attachments/assets/ddd92895-1b8a-4f01-bdda-425a2beea1c7)
 
 3. Navigate to `http://localhost:5000/count` to see the visit count increment each time you refresh the page.
    

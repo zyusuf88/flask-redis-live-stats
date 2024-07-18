@@ -237,7 +237,7 @@ CMD ["python", "app.py"]
  `docker-compose down`
  
 - This command will:
-    - To stop the application
+    -  Stop the application
 
 ## Conclusion
 This project demonstrates how to set up a simple multi-container application using Flask and Redis, managed with Docker Compose. By using Docker, we achieve a clean separation of concerns, scalability, and portability, making our application easier to manage and deploy across different environments.

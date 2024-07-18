@@ -173,7 +173,6 @@ if __name__ == '__main__':
 - The docker-compose file sets up the services for the application. It links multiple containers together so they can communicate with each other:
 
 ```
-version: '3.8'
 services:
   web:
     build: .

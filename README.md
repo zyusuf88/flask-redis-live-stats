@@ -47,14 +47,15 @@ Welcome to the Flask-Redis Visitor Counter project! This project showcases a sim
 
 ### Project Overview
 
-In this project, we have two main components:
+In this project, we have three main components:
 
 1. **Flask Web Application**: A simple web server built with Flask that serves two endpoints:
    - `/`: Displays a welcome message.
    - `/count`: Increments and displays the visitor count stored in Redis.
 
 2. **Redis Database**: A fast, in-memory key-value store used to keep track of the visitor count.
-    
+3. **Docker Compose**: Manages the multi-container application, ensuring that the Flask application and Redis database run in separate, isolated containers. Docker Compose simplifies the process of setting up, running, and scaling the application.
+
 
 ### Multi-Container Application
 
@@ -88,6 +89,8 @@ A multi-container application uses multiple Docker containers to separate differ
 2. Open your browser and go to `http://localhost:5000` to see the welcome message.
 
 3. Navigate to `http://localhost:5000/count` to see the visit count increment each time you refresh the page.
+   
+https://github.com/user-attachments/assets/b77f1411-f9a2-4fda-9017-29fee787fbd8
 
 ## Endpoints
 

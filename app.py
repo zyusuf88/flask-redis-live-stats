@@ -5,6 +5,7 @@ app = Flask(__name__)
 
 #connect to redis
 client = redis.Redis(host='redis', port=6379)
+
 # Route 1 - Welcome message
 @app.route('/')
 def welcome():

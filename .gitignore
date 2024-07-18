@@ -1,4 +1,4 @@
-*.venv
+.venv
 
 # Ignore redis binary dump (dump.rdb) files
 

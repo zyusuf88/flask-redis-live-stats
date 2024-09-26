@@ -31,6 +31,8 @@ This project demonstrates a simple multi-container application using Flask and R
   - [Dockerfile](#dockerfile)
 - [Commands](#commands)
 - [Conclusion](#conclusion)
+- [Updating the App:](#updating-the-app)
+  - [Setting Up Redis to Save Data with a Volume](#setting-up-redis-to-save-data-with-a-volume)
 
 
 Welcome to the Flask-Redis Visitor Counter project! This project showcases a simple multi-container application using Flask and Redis, all managed by Docker Compose.
@@ -245,3 +247,23 @@ CMD ["python", "app.py"]
 
 ## Conclusion
 This project demonstrates how to set up a simple multi-container application using Flask and Redis, managed with Docker Compose. By using Docker, we achieve a clean separation of concerns, scalability, and portability, making our application easier to manage and deploy across different environments.
+
+---
+
+## Updating the App:
+
+### Setting Up Redis to Save Data with a Volume
+
+
+When you run a Docker container, any data inside the container is temporary. If the container stops or is deleted, all the data is lost. To keep your data safe even when a container stops, Docker uses something called **volumes**.
+
+I've updated the `docker-compose.yml` file to use a volume for Redis. This means Redis will store its data in the `track_my_visits_z` volume instead of inside the container. 
+
+To make managing the volume easier, I’ve given it a name (`track_my_visits_z`). This is better than letting Docker create an unnamed (anonymous) volume, which can be harder to keep track of.
+
+Here’s the part of the `docker-compose.yml` file that defines the volume:
+
+```yml
+volumes:
+  track_my_visits_z:
+```

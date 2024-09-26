@@ -1,5 +1,5 @@
-#  docker compose file will link multiple containers together them together so they can communicate with each other
-version: '3.10'
+
+version: '3.8'
 services:
   web:
     build: .
@@ -11,4 +11,11 @@ services:
     image: "redis:alpine"
     expose:
       - "6379"
+    volumes:
+      - track_my_visits_z:/data
+
+volumes:
+  track_my_visits_z:
+
+
 
